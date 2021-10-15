@@ -18,13 +18,16 @@ int main(int argc, char* argv[]){
     // Options that might be set by the command-line arguments
     bool helpRequested{false};
     bool versionRequested{false};
+    bool encryptRequested{false};
+    bool decryptRequested{false};
+    int key{0};
     std::string inputFile{""};
     std::string outputFile{""};
-
+    
     bool processCLOutput{false};
 
 
-    processCLOutput = processCommandLine(cmdLineArgs, helpRequested, versionRequested, inputFile, outputFile);
+    processCLOutput = processCommandLine(cmdLineArgs, helpRequested, versionRequested, encryptRequested, decryptRequested, inputFile, outputFile, key);
 
     
     if(processCLOutput){

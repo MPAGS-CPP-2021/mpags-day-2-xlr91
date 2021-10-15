@@ -4,8 +4,12 @@ bool processCommandLine(
     const std::vector<std::string>& args,
     bool& helpRequested,
     bool& versionRequested,
+    bool& encryptRequested,
+    bool& decryptRequested,
     std::string& inputFileName,
-    std::string& outputFileName ){
+    std::string& outputFileName,
+    int& key
+    ){
 
     // Process command line arguments - ignore zeroth element, as we know this
     // to be the program name and don't need to worry about it
@@ -41,7 +45,36 @@ bool processCommandLine(
                 outputFileName = args[i + 1];
                 ++i;
             }
-        } else {
+        } else if (args[i] == "-k") {
+            // Handle key option
+            // Next element is key unless "-k" is the last argument
+            if (i == nCmdLineArgs - 1) {
+                std::cerr << "[error] -k requires an int argument"
+                          << std::endl;
+                // exit main with non-zero return to indicate failure
+                return 1;
+
+            
+            } else if(!std::isdigit(args[i + 1][0])){ //if not a digit
+                std::cerr << "[error] -k requires an int argument" <<std::endl;
+            
+            } else {
+                // Got filename, so assign value and advance past it
+                key = std::stoi(args[i + 1]);
+                ++i;
+            }
+
+       } else if(args[i] == "--encrypt"){
+            encryptRequested = true;
+
+        } else if(args[i] == "--decrypt"){
+            decryptRequested = true;
+        } 
+        
+        
+
+        
+        else {
             // Have an unknown flag to output error message and return non-zero
             // exit status to indicate failure
             std::cerr << "[error] unknown argument '" << args[i]
@@ -50,6 +83,11 @@ bool processCommandLine(
         }
     }
         
+    //handle naughty --encrypt and --decrypt use at the same time
+    if(encryptRequested && decryptRequested){
+        std::cerr << "[error] cannot encrypt and decrypt at same time" <<std::endl;
+        return 1;
+    }
     // Handle help, if requested
     if (helpRequested) {
         // Line splitting for readability
