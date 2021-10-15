@@ -28,41 +28,10 @@ int main(int argc, char* argv[]){
 
     
     if(processCLOutput){
-        return 1; //indicates that there is an error
+        return 1; //indicates that the program shouldnt run
     }
     
     
-    std::cout << inputFile.empty() << std::endl;
-
-
-    // Handle help, if requested
-    if (helpRequested) {
-        // Line splitting for readability
-        std::cout
-            << "Usage: mpags-cipher [-h/--help] [--version] [-i <file>] [-o <file>]\n\n"
-            << "Encrypts/Decrypts input alphanumeric text using classical ciphers\n\n"
-            << "Available options:\n\n"
-            << "  -h|--help        Print this help message and exit\n\n"
-            << "  --version        Print version information\n\n"
-            << "  -i FILE          Read text to be processed from FILE\n"
-            << "                   Stdin will be used if not supplied\n\n"
-            << "  -o FILE          Write processed text to FILE\n"
-            << "                   Stdout will be used if not supplied\n\n"
-            << std::endl;
-        // Help requires no further action, so return from main
-        // with 0 used to indicate success
-        return 0;
-    }
-
-    // Handle version, if requested
-    // Like help, requires no further action,
-    // so return from main with zero to indicate success
-    if (versionRequested) {
-        std::cout << "0.1.0" << std::endl;
-        return 0;
-    }
-
-
 
     // Initialise variables
     char inputChar{'x'};
