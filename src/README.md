@@ -1,10 +1,13 @@
 # mpags-cipher
 A simple command line tool for encrypting/decrypting text using classical ciphers
 
+Note: Editing this README and not the other one for simplicity, as this one is the more complete version
+
 ## Authors
 Thomas Latham, Ben Morgan, Mark Slater, Matt Williams, Luke Kreczko
 
 ## Building `mpags-cipher`
+### 1. Original Method
 Compilation of `mpags-cipher` requires a  C++11 compatible compiler
 (GCC 8 or better, Clang 8 or better are recommended) on a UNIX operating
 system.
@@ -31,12 +34,30 @@ classical ciphers, it is transliterated using the following rules:
 
 The results of this transliteration are output after CTRL-D.
 
+### 2. Using CMake
+
+Create a separate build directory using
+`mkdir ../build`
+and cd into it. 
+
+Then run 
+```
+cmake ../src
+make
+```
+
 ## Source code layout
 ```
 .
-├── LICENSE             License file, in our case MIT
-├── mpags-cipher.cpp    Main program C++ source file
-└── README.md           This file, describes the project
+├── LICENSE                         License file, in our case MIT
+├── mpags-cipher.cpp                Main program C++ source file
+├── README.md                       This file, describes the project
+└── MPAGSCipher
+    ├── processCommandLine.cpp      command line parser source file
+    ├── processCommandLine.hpp      command line parser header file
+    ├── TransformChar.cpp           character parser header file
+    └── TransformChar.cpp           character line parser header file
+    
 ```
 
 ## Copying
