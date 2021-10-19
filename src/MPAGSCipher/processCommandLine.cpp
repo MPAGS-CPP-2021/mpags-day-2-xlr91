@@ -48,6 +48,7 @@ bool processCommandLine(
         } else if (args[i] == "-k") {
             // Handle key option
             // Next element is key unless "-k" is the last argument
+            // Should probably check that the key is a positive int, dont have time tho :/
             if (i == nCmdLineArgs - 1) {
                 std::cerr << "[error] -k requires an int argument"
                           << std::endl;
@@ -101,6 +102,7 @@ bool processCommandLine(
             << "                   Stdin will be used if not supplied\n\n"
             << "  -o FILE          Write processed text to FILE\n"
             << "                   Stdout will be used if not supplied\n\n"
+            << " placeholder for -k, --encrypt, --decrypt \n \n" //dont have time to properly help text :(
             << std::endl;
         // Help requires no further action, so return from main
         // with 0 used to indicate success

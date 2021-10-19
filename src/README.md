@@ -46,6 +46,13 @@ cmake ../src
 make
 ```
 
+## Usage
+Note: Apologies but don't have time to make a full usage help text in the readme, but what would be here would be:
+-k
+--encrypt
+--decrypt 
++ the other arguments from last week
+
 ## Source code layout
 ```
 .
@@ -56,7 +63,9 @@ make
     ├── processCommandLine.cpp      command line parser source file
     ├── processCommandLine.hpp      command line parser header file
     ├── TransformChar.cpp           character parser header file
-    └── TransformChar.cpp           character line parser header file
+    ├── TransformChar.cpp           character line parser header file
+    ├── processCommandLine.cpp      cipher source file
+    └── processCommandLine.cpp      cipher header file
     
 ```
 
