@@ -7,6 +7,7 @@
  
 #include "TransformChar.hpp"
 #include "processCommandLine.hpp"
+#include "runCaesarCipher.hpp"
 
 
 //define functions
@@ -20,6 +21,7 @@ int main(int argc, char* argv[]){
     bool versionRequested{false};
     bool encryptRequested{false};
     bool decryptRequested{false};
+    bool encrpytFlag{false}; //if true, encrypts, and vice versa
     int key{0};
     std::string inputFile{""};
     std::string outputFile{""};
@@ -33,12 +35,21 @@ int main(int argc, char* argv[]){
     if(processCLOutput){
         return 1; //indicates that the program shouldnt run
     }
+
+    if(encryptRequested){
+        encrpytFlag = true;
+    }
+    if(decryptRequested){ //just in case
+        encrpytFlag = false;
+    }
+    
     
     
 
     // Initialise variables
     char inputChar{'x'};
     std::string inputText;
+    std::string outputText;
     std::ifstream in_file{inputFile};
     std::ofstream out_file{outputFile};
 
@@ -56,14 +67,16 @@ int main(int argc, char* argv[]){
         }
     }
 
+    outputText = runCaesarCipher(inputText, key, encrpytFlag);
+    
     // Print out the transliterated text
     // Warn that output file option not yet implemented
     if (!outputFile.empty()) {
         if(out_file.good()){
-            out_file << inputText;
+            out_file << outputText;
         }
     } else{
-        std::cout << inputText << std::endl;
+        std::cout << outputText << std::endl;
     }
 
     
